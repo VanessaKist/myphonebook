@@ -1,0 +1,45 @@
+<html ng-app="phoneBook">
+<head>
+	<title>Phone Book</title>
+	<link rel="stylesheet" type="text/css" href="my_css.css">
+	<script src="angular.js"></script>
+	<script>
+		//controler
+		angular.module("phoneBook", []);
+		//scope
+		angular.module("phoneBook").controller("phoneBookCtrl", function ($scope){
+				$scope.app = "Phone Book";
+				$scope.contatos = [
+				{name: "Mary", phone:"99998888"},
+				{name: "Marcus", phone:"98985554"},
+				{name: "Peter", phone:"88855544"}
+				];
+				$scope.addContact= function(contato){
+				$scope.contatos.push(angular.copy(contato));
+			};
+			});
+	</script>
+</head>
+<body ng-controller="phoneBookCtrl"> 
+	<!-- View -->
+	<div class="grid">
+		<div class="item"><h1>{{app}}</h1></div>
+		<div class="item2">
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Phone Number</th>
+				</tr>
+				<tr ng-repeat="contato in contatos">
+					<td>{{contato.name}}</td>
+					<td>{{contato.phone}}</td>
+				</tr>
+			</table>
+			<br/>
+			<input type="text" placeholder="Name" ng-model="contato.name"/><br/>
+			<input type="text" placeholder="Phone" ng-model="contato.phone"/><br/>
+			<button ng-click="addContact(contato)">Add Contact</button>
+		</div>
+</div>
+</body>
+</html>
